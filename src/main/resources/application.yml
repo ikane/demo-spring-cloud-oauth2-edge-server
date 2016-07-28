@@ -1,0 +1,33 @@
+info:
+  component: Zuul Server
+  
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+
+zuul:
+  routes:
+    service1: /**
+
+logging:
+  level:
+    ROOT: INFO
+    net.acesinc: DEBUG
+  file: edgeserver.log
+
+server:
+  port: 8080
+    
+security:
+  oauth2:
+    client:
+      accessTokenUri: http://localhost:9999/uaa/oauth/token
+      userAuthorizationUri: http://localhost:9999/uaa/oauth/authorize
+      clientId: acme
+      clientSecret: acmesecret
+    resource:
+      user-info-uri: http://localhost:9999/uaa/user
